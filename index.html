@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Newtrick Wekesa | Portfolio</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<script src="https://kit.fontawesome.com/4c3d1f5a2a.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<header>
+<nav class="navbar">
+
+<div class="logo">Newtrick</div>
+
+<ul class="nav-links" id="navLinks">
+<li><a href="#home">Home</a></li>
+<li><a href="#about">About</a></li>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+
+<div class="menu-toggle" id="menuToggle">
+<i class="fas fa-bars"></i>
+</div>
+
+</nav>
+</header>
+
+<!-- HERO -->
+
+<section id="home" class="hero">
+
+<div class="hero-content">
+
+<img src="newt.png" class="profile-img">
+
+<h1>Newtrick Wekesa</h1>
+
+<h3>Technology Enthusiast | Developer | Problem Solver</h3>
+
+<p>
+I am Newtrick Wekesa, a student at Rongo University passionate about technology and innovation.
+I specialize in different areas of tech including software development, problem solving,
+and digital solutions. I enjoy building intelligent systems and modern web applications.
+</p>
+
+<a href="#projects" class="btn">View My Work</a>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about" class="about">
+
+<h2>About Me</h2>
+
+<div class="about-container">
+
+<img src="newt.png">
+
+<p>
+I am Newtrick Wekesa, a Rongo University student specializing in various fields of technology.
+I am passionate about building innovative digital solutions and exploring modern technologies
+such as AI, web development and software systems.
+My goal is to develop impactful solutions that solve real world problems.
+</p>
+
+</div>
+
+</section>
+
+<!-- SKILLS -->
+
+<section id="skills">
+
+<h2>Skills</h2>
+
+<div class="skills-grid">
+
+<div class="skill-card">HTML</div>
+<div class="skill-card">CSS</div>
+<div class="skill-card">JavaScript</div>
+<div class="skill-card">AI Integration</div>
+<div class="skill-card">Web Development</div>
+<div class="skill-card">Debugging</div>
+<div class="skill-card">Problem Solving</div>
+<div class="skill-card">API Integration</div>
+<div class="skill-card">Git & GitHub</div>
+
+</div>
+
+</section>
+
+<!-- PROJECTS -->
+
+<section id="projects">
+
+<h2>Projects</h2>
+
+<div class="project-grid">
+
+<div class="project-card">
+
+<h3>AI Chatbot Web App</h3>
+
+<p>Web AI assistant built with API integration.</p>
+
+<button>View Live</button>
+<button>View Code</button>
+
+</div>
+
+<div class="project-card">
+
+<h3>Bluetooth Multiplayer Football Game</h3>
+
+<p>Two-player game using Bluetooth connection.</p>
+
+<button>View Live</button>
+<button>View Code</button>
+
+</div>
+
+<div class="project-card">
+
+<h3>WhatsApp Chatbot</h3>
+
+<p>Automated WhatsApp chatbot integration.</p>
+
+<button>View Live</button>
+<button>View Code</button>
+
+</div>
+
+<div class="project-card">
+
+<h3>WiFi Captive Portal System</h3>
+
+<p>Redirects users to payment/login page.</p>
+
+<button>View Live</button>
+<button>View Code</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- CONTACT -->
+
+<section id="contact">
+
+<h2>Contact Me</h2>
+
+<form>
+
+<input type="text" placeholder="Your Name" required>
+
+<input type="email" placeholder="Email" required>
+
+<textarea placeholder="Message"></textarea>
+
+<button type="submit">Send</button>
+
+</form>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<p>© 2026 Newtrick Wekesa</p>
+
+<a href="#home">Back to top</a>
+
+</footer>
+
+<!-- AI CHAT BUTTON -->
+
+<div class="chat-btn" id="chatBtn">💬</div>
+
+<div class="chat-box" id="chatBox">
+
+<div class="chat-header">
+AI Assistant
+</div>
+
+<div class="chat-messages" id="chatMessages"></div>
+
+<div class="chat-input">
+
+<input id="userInput" placeholder="Ask something...">
+
+<button onclick="sendMessage()">Send</button>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
