@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Newtrick Wanjala | Cybersecurity Student</title>
+<meta name="description" content="Cybersecurity portfolio of Newtrick Wanjala, a Computer Science student focused on network security, ethical hacking, Linux security, and vulnerability assessment.">
+<style>
+:root{
+  --bg:#0a0e14; --bg2:#10151f; --card:#141a24; --border:#232b38;
+  --text:#e6edf3; --muted:#8b96a5; --accent:#3fd0c9; --accent2:#5b8def;
+  --mono:'SFMono-Regular',Consolas,'Liberation Mono',Menlo,monospace;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+  box-sizing:border-box;
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){
+    --bg:#f7f9fb; --bg2:#ffffff; --card:#ffffff; --border:#dde3ea;
+    --text:#14191f; --muted:#5b6673;
+  }
+}
+:root[data-theme="light"]{
+  --bg:#f7f9fb; --bg2:#ffffff; --card:#ffffff; --border:#dde3ea;
+  --text:#14191f; --muted:#5b6673;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
+body{background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.6;}
+.wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
+nav{position:sticky; top:0; z-index:10; background:color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); padding:env(safe-area-inset-top,0px) 0 0;}
+.navrow{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
+.brand{font-weight:700; letter-spacing:.3px;}
+.brand span{color:var(--accent);}
+.navlinks{display:flex; gap:22px; font-size:14px;}
+.navlinks a{color:var(--muted); text-decoration:none;}
+.navlinks a:hover{color:var(--text);}
+section{padding:64px 0; border-bottom:1px solid var(--border);}
+.badge{display:inline-flex; align-items:center; gap:8px; font-size:13px; color:var(--accent); border:1px solid var(--border); padding:6px 12px; border-radius:20px; margin-bottom:18px;}
+.badge::before{content:''; width:8px; height:8px; border-radius:50%; background:var(--accent);}
+h1{font-size:clamp(32px,5vw,48px); line-height:1.15; max-width:720px;}
+h2{font-size:26px; margin-bottom:28px;}
+.sub{color:var(--muted); font-size:18px; margin-top:16px; max-width:600px;}
+.intro{margin-top:20px; max-width:620px; color:var(--muted);}
+.btnrow{display:flex; gap:12px; margin-top:32px; flex-wrap:wrap;}
+.btn{padding:11px 20px; border-radius:8px; font-size:14px; font-weight:600; text-decoration:none; display:inline-block;}
+.btn-primary{background:var(--accent); color:#06231f;}
+.btn-outline{border:1px solid var(--border); color:var(--text);}
+.links{display:flex; gap:16px; margin-top:28px; font-size:14px;}
+.links a{color:var(--muted); text-decoration:none;}
+.grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px;}
+.card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:20px;}
+.card h3{font-size:16px; margin-bottom:10px; color:var(--accent);}
+.card ul{list-style:none; color:var(--muted); font-size:14px;}
+.card li{padding:3px 0;}
+.tags{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px;}
+.tag{font-family:var(--mono); font-size:12px; background:var(--bg2); border:1px solid var(--border); padding:4px 10px; border-radius:6px; color:var(--muted);}
+.status{font-size:11px; padding:2px 8px; border-radius:10px; background:var(--bg2); border:1px solid var(--border); color:var(--accent2);}
+.proj-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:24px;}
+.proj-card h3{font-size:18px; margin-bottom:6px;}
+.proj-meta{font-size:13px; color:var(--muted); margin-bottom:14px;}
+.proj-card .placeholder{color:var(--muted); font-size:14px; border-left:3px solid var(--border); padding-left:14px; margin-top:10px; font-style:italic;}
+.lab{font-family:var(--mono); font-size:14px; background:var(--bg2); border:1px solid var(--border); border-radius:10px; padding:24px; color:var(--muted); line-height:2;}
+.lab b{color:var(--text);}
+.ethics ul{color:var(--muted); font-size:15px; padding-left:20px; margin-top:12px;}
+.ethics li{padding:4px 0;}
+.quote{margin-top:20px; border-left:3px solid var(--accent); padding-left:16px; color:var(--muted); font-size:14px;}
+form{display:grid; gap:14px; max-width:480px; margin-top:20px;}
+input,textarea{background:var(--bg2); border:1px solid var(--border); border-radius:8px; padding:12px; color:var(--text); font-family:inherit; font-size:14px;}
+textarea{min-height:110px; resize:vertical;}
+footer{padding:36px 0; text-align:center; color:var(--muted); font-size:13px;}
+.editnote{font-size:12px; color:var(--muted); background:var(--bg2); border:1px dashed var(--border); padding:10px 14px; border-radius:8px; margin-top:10px;}
+@media (max-width:640px){.navlinks{display:none;}}
+.connect-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-top:24px;}
+.connect-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; text-decoration:none; color:var(--text); display:flex; align-items:center; gap:12px; transition:border-color .15s;}
+.connect-card:hover{border-color:var(--accent);}
+.connect-icon{font-size:22px;}
+.connect-label{font-size:13px; color:var(--muted);}
+.connect-value{font-size:14px; font-weight:600;}
+.wa-float{position:fixed; right:18px; bottom:calc(18px + env(safe-area-inset-bottom,0px)); width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; font-size:26px; text-decoration:none; box-shadow:0 4px 16px rgba(0,0,0,.3); z-index:20;}
+</style>
+</head>
+<body>
+
+<script>
+/* ======== EDIT YOUR LINKS HERE — this is the only place you need to change ======== */
+const CONFIG = {
+  whatsapp:  "254700000000",                         // digits only, country code, no + or spaces
+  github:    "https://github.com/yourusername",
+  linkedin:  "https://linkedin.com/in/yourusername",
+  twitter:   "",                                      // leave "" to hide
+  instagram: "",                                      // leave "" to hide
+  email:     "your-email@example.com",
+  projects:  "https://github.com/yourusername?tab=repositories" // link to view all your projects
+};
+/* =================================================================================== */
+</script>
+
+<nav><div class="wrap navrow">
+  <div class="brand">Newtrick<span>.</span></div>
+  <div class="navlinks">
+    <a href="#focus">Focus</a><a href="#skills">Skills</a><a href="#projects">Projects</a>
+    <a href="#lab">Lab</a><a href="#education">Education</a><a href="#contact">Contact</a>
+  </div>
+</div></nav>
+
+<section id="hero">
+  <div class="wrap">
+    <div class="badge">Open to Cybersecurity Internship &amp; Junior Security Opportunities</div>
+    <h1>Securing Systems. Understanding Threats. Building Safer Technology.</h1>
+    <p class="sub">Cybersecurity Student · Ethical Hacking · Network Security · Linux</p>
+    <p class="intro">I'm a Computer Science student specializing in cybersecurity, passionate about understanding how systems are attacked, how vulnerabilities can be identified, and how organizations can build stronger defenses.</p>
+    <div class="btnrow">
+      <a class="btn btn-primary" id="projects-ext-link" href="#" target="_blank" rel="noopener">View My Projects</a>
+      <a class="btn btn-outline" href="#" id="cvlink">Download CV</a>
+      <a class="btn btn-outline" href="#connect">Contact Me</a>
+    </div>
+    <div class="links">
+      <a id="hero-github" href="#" target="_blank" rel="noopener">GitHub ↗</a>
+      <a id="hero-linkedin" href="#" target="_blank" rel="noopener">LinkedIn ↗</a>
+      <a id="hero-email" href="#">Email ↗</a>
+    </div>
+  </div>
+</section>
+
+<section id="focus">
+  <div class="wrap">
+    <h2>Cybersecurity Focus Areas</h2>
+    <div class="grid">
+      <div class="card"><h3>Network Security</h3><ul><li>TCP/IP · DNS · DHCP</li><li>Firewalls &amp; segmentation</li><li>VPN concepts</li><li>Network monitoring</li></ul></div>
+      <div class="card"><h3>Ethical Hacking</h3><ul><li>Reconnaissance</li><li>Vulnerability identification</li><li>Web security testing</li><li>Authentication testing</li></ul></div>
+      <div class="card"><h3>Linux Security</h3><ul><li>Permissions &amp; users</li><li>Processes &amp; services</li><li>Log analysis</li><li>System hardening</li></ul></div>
+      <div class="card"><h3>Web Security</h3><ul><li>OWASP Top 10</li><li>Session security</li><li>Input validation</li><li>Secure APIs</li></ul></div>
+      <div class="card"><h3>Digital Forensics</h3><ul><li>Evidence preservation</li><li>Log analysis</li><li>Timeline analysis</li></ul></div>
+      <div class="card"><h3>Security Operations</h3><ul><li>Log monitoring</li><li>Threat detection</li><li>IOC basics</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <h2>Skills</h2>
+    <div class="grid">
+      <div class="card"><h3>Security</h3><div class="tags">
+        <span class="tag">Ethical Hacking</span><span class="tag">Vuln. Assessment</span><span class="tag">Network Security</span><span class="tag">Web Security</span><span class="tag">Threat Analysis</span>
+      </div></div>
+      <div class="card"><h3>Systems &amp; Networking</h3><div class="tags">
+        <span class="tag">Linux</span><span class="tag">Windows</span><span class="tag">TCP/IP</span><span class="tag">DNS</span><span class="tag">Firewalls</span>
+      </div></div>
+      <div class="card"><h3>Scripting</h3><div class="tags">
+        <span class="tag">Python</span><span class="tag">Bash</span><span class="tag">JavaScript</span>
+      </div></div>
+      <div class="card"><h3>Tools</h3><div class="tags">
+        <span class="tag">Kali Linux</span><span class="tag">Nmap</span><span class="tag">Wireshark</span><span class="tag">Burp Suite</span><span class="tag">Ghidra</span><span class="tag">Git</span>
+      </div></div>
+    </div>
+    <p class="editnote">Tool proficiency uses honest labels (Learning / Familiar / Practicing / Project Experience) — edit each tag's status as skills develop.</p>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Security Projects</h2>
+    <div class="grid" style="grid-template-columns:repeat(auto-fit,minmax(280px,1fr))">
+      <div class="proj-card">
+        <h3>Network Security Lab</h3>
+        <div class="proj-meta">Authorized laboratory environment</div>
+        <div class="placeholder">Add: objective, tools used, methodology, findings, and mitigation once this project is complete. Include screenshots and a link to your documentation/report.</div>
+      </div>
+      <div class="proj-card">
+        <h3>Vulnerability Assessment Lab</h3>
+        <div class="proj-meta">Intentionally vulnerable target VM</div>
+        <div class="placeholder">Add: reconnaissance steps, enumeration, vulnerability identified, evidence, and remediation recommendation.</div>
+      </div>
+      <div class="proj-card">
+        <h3>Web Application Security Lab</h3>
+        <div class="proj-meta">OWASP Top 10 practice environment</div>
+        <div class="placeholder">Add: vulnerability class tested (e.g. SQLi, XSS), payload used, impact, and fix recommended.</div>
+      </div>
+      <div class="proj-card">
+        <h3>Linux Hardening Project</h3>
+        <div class="proj-meta">Before → Assessment → After</div>
+        <div class="placeholder">Add: baseline config, weaknesses found, hardening steps applied, and verification of the fix.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="lab">
+  <div class="wrap">
+    <h2>My Cybersecurity Lab</h2>
+    <div class="lab">
+      <b>Internet</b><br>↓<br><b>Router</b><br>↓<br><b>Firewall</b><br>↓<br>
+      <b>Virtualization Environment</b><br>↓<br>Linux Security Lab · Windows Security Lab<br>↓<br>
+      Vulnerable Test Machine<br>↓<br>Monitoring / Analysis Tools
+    </div>
+    <p class="editnote">Educational / Authorized Laboratory Environment — list your actual tools here: VirtualBox, Kali Linux, Metasploitable, OWASP Juice Shop, etc.</p>
+  </div>
+</section>
+
+<section class="ethics">
+  <div class="wrap">
+    <h2>Ethical Security Principles</h2>
+    <ul>
+      <li>Authorization first — no testing without explicit permission</li>
+      <li>Responsible disclosure of any findings</li>
+      <li>Privacy and data protection</li>
+      <li>Least privilege and defense in depth</li>
+      <li>Evidence preservation and integrity</li>
+    </ul>
+    <p class="quote">All security testing demonstrated in this portfolio is conducted in authorized, educational, or controlled environments.</p>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <h2>Education</h2>
+    <div class="card" style="max-width:600px">
+      <h3 style="color:var(--text)">Rongo University</h3>
+      <p style="color:var(--muted); margin-top:6px;">Bachelor's Degree in Computer Science</p>
+      <p class="editnote">Add expected graduation date, relevant coursework, and any academic achievements.</p>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Certifications</h2>
+    <p class="editnote">No certifications listed yet — add them here as earned (name, provider, date, credential ID, verification link). Never list a certification not actually obtained.</p>
+  </div>
+</section>
+
+<section id="connect">
+  <div class="wrap">
+    <h2>Connect With Me</h2>
+    <p style="color:var(--muted)">Reach out directly on any of these — or use the form below.</p>
+    <div class="connect-grid" id="connect-grid"></div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <h2>Contact</h2>
+    <p style="color:var(--muted)">Open to internships, attachments, and junior cybersecurity roles.</p>
+    <form onsubmit="event.preventDefault(); window.location.href='mailto:your-email@example.com?subject=' + encodeURIComponent(this.subject.value) + '&body=' + encodeURIComponent('From: ' + this.name.value + ' (' + this.email.value + ')\n\n' + this.message.value);">
+      <input name="name" placeholder="Name" required>
+      <input name="email" type="email" placeholder="Email" required>
+      <input name="subject" placeholder="Subject">
+      <textarea name="message" placeholder="Message" required></textarea>
+      <button class="btn btn-primary" type="submit" style="border:none; cursor:pointer;">Send Message</button>
+    </form>
+    <p class="editnote">This form opens the visitor's email client (no backend). Replace "your-email@example.com" with your real address.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    Newtrick Wanjala — Cybersecurity Student | Ethical Hacking | Network Security
+  </div>
+</footer>
+
+<a class="wa-float" id="wa-float" href="#" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">💬</a>
+
+<script>
+try {
+  const C = CONFIG;
+  const set = (id, href) => { const el = document.getElementById(id); if (el) el.href = href; };
+
+  set('projects-ext-link', C.projects);
+  set('hero-github', C.github);
+  set('hero-linkedin', C.linkedin);
+  set('hero-email', 'mailto:' + C.email);
+  set('wa-float', 'https://wa.me/' + C.whatsapp);
+
+  const entries = [
+    { key: 'whatsapp',  icon: '💬', label: 'WhatsApp', value: 'Chat now', href: C.whatsapp ? 'https://wa.me/' + C.whatsapp : '' },
+    { key: 'github',    icon: '🐙', label: 'GitHub',   value: 'View profile', href: C.github },
+    { key: 'linkedin',  icon: '💼', label: 'LinkedIn', value: 'Connect',     href: C.linkedin },
+    { key: 'twitter',   icon: '🐦', label: 'Twitter/X', value: 'Follow',     href: C.twitter },
+    { key: 'instagram', icon: '📸', label: 'Instagram', value: 'Follow',     href: C.instagram },
+    { key: 'email',     icon: '✉️', label: 'Email',     value: C.email,      href: C.email ? 'mailto:' + C.email : '' },
+  ];
+
+  const grid = document.getElementById('connect-grid');
+  entries.filter(e => e.href).forEach(e => {
+    const a = document.createElement('a');
+    a.className = 'connect-card';
+    a.href = e.href;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.innerHTML = `<span class="connect-icon">${e.icon}</span><span><span class="connect-label">${e.label}</span><br><span class="connect-value">${e.value}</span></span>`;
+    grid.appendChild(a);
+  });
+} catch (err) {
+  console.error('Config wiring failed:', err);
+}
+</script>
+
+</body>
+</html>
