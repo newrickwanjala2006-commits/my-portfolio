@@ -27,7 +27,7 @@
 html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
 body{background:var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif; line-height:1.6;}
 .wrap{max-width:1040px; margin:0 auto; padding:0 24px;}
-nav{position:sticky; top:0; z-index:10; background:color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); padding:env(safe-area-inset-top,0px) 0 0;}
+nav{position:sticky; top:0; z-index:10; background:color-mix(in srgb, var(--bg) 85%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--border); padding:env(safe-area-inset-top,0px)}
 .navrow{display:flex; align-items:center; justify-content:space-between; padding:14px 0;}
 .brand{font-weight:700; letter-spacing:.3px;}
 .brand span{color:var(--accent);}
@@ -71,12 +71,13 @@ footer{padding:36px 0; text-align:center; color:var(--muted); font-size:13px;}
 .editnote{font-size:12px; color:var(--muted); background:var(--bg2); border:1px dashed var(--border); padding:10px 14px; border-radius:8px; margin-top:10px;}
 @media (max-width:640px){.navlinks{display:none;}}
 .connect-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-top:24px;}
-.connect-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; text-decoration:none; color:var(--text); display:flex; align-items:center; gap:12px; transition:border-color .15s;}
+.connect-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; text-decoration:none; color:var(--text); display:flex; align-items:center; gap:12px; transition:all 0.3s ease;}
 .connect-card:hover{border-color:var(--accent);}
 .connect-icon{font-size:22px;}
 .connect-label{font-size:13px; color:var(--muted);}
 .connect-value{font-size:14px; font-weight:600;}
-.wa-float{position:fixed; right:18px; bottom:calc(18px + env(safe-area-inset-bottom,0px)); width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; font-size:26px; text-decoration:none; box-shadow:0 4px 16px rgba(0,0,0,.3); z-index:20;}
+.wa-float{position:fixed; right:18px; bottom:calc(18px + env(safe-area-inset-bottom,0px)); width:56px; height:56px; border-radius:50%; background:#25D366; display:flex; align-items:center; justify-content:center; color:#fff; font-size:28px; text-decoration:none; box-shadow:0 4px 12px rgba(37,211,102,0.4); transition:all 0.3s ease; z-index:9;}
+.wa-float:hover{transform:scale(1.1); box-shadow:0 6px 16px rgba(37,211,102,0.6);}
 </style>
 </head>
 <body>
@@ -84,13 +85,14 @@ footer{padding:36px 0; text-align:center; color:var(--muted); font-size:13px;}
 <script>
 /* ======== EDIT YOUR LINKS HERE — this is the only place you need to change ======== */
 const CONFIG = {
-  whatsapp:  "254748450496",                         // digits only, country code, no + or spaces
-  github:    "https://github.com/newtrick wanjala",
-  linkedin:  "https://linkedin.com/in/newtrick wanjala",
-  twitter:   "",                                      // leave "" to hide
-  instagram: "",                                      // leave "" to hide
+  whatsapp:  "254748450496",
+  github:    "https://github.com/newrickwanjala2006",
+  linkedin:  "https://linkedin.com/in/newtrickwanjala",
+  twitter:   "",
+  instagram: "",
+  facebook:  "https://facebook.com/newt.rick",
   email:     "wanjalanewtrick@gmail.com",
-  projects:  "https://github.com/yourusername?tab=repositories" // link to view all your projects
+  projects:  "https://github.com/newrickwanjala2006?tab=repositories"
 };
 /* =================================================================================== */
 </script>
@@ -108,7 +110,7 @@ const CONFIG = {
     <div class="badge">Open to Cybersecurity Internship &amp; Junior Security Opportunities</div>
     <h1>Securing Systems. Understanding Threats. Building Safer Technology.</h1>
     <p class="sub">Cybersecurity Student · Ethical Hacking · Network Security · Linux</p>
-    <p class="intro">I'm a Computer Science student specializing in cybersecurity, passionate about understanding how systems are attacked, how vulnerabilities can be identified, and how organizations can build stronger defenses.</p>
+    <p class="intro">I'm a Computer Science student specializing in cybersecurity, passionate about understanding how systems are attacked, how vulnerabilities can be identified, and how organizations can build more resilient defenses.</p>
     <div class="btnrow">
       <a class="btn btn-primary" id="projects-ext-link" href="#" target="_blank" rel="noopener">View My Projects</a>
       <a class="btn btn-outline" href="#" id="cvlink">Download CV</a>
@@ -241,14 +243,14 @@ const CONFIG = {
   <div class="wrap">
     <h2>Contact</h2>
     <p style="color:var(--muted)">Open to internships, attachments, and junior cybersecurity roles.</p>
-    <form onsubmit="event.preventDefault(); window.location.href='mailto:your-email@example.com?subject=' + encodeURIComponent(this.subject.value) + '&body=' + encodeURIComponent('From: ' + this.name.value + ' (' + this.email.value + ')\n\n' + this.message.value);">
+    <form onsubmit="event.preventDefault(); window.location.href='mailto:wanjalanewtrick@gmail.com?subject=' + encodeURIComponent(this.subject.value) + '&body=' + encodeURIComponent('From: ' + this.name.value + ' (' + this.email.value + ')\n\n' + this.message.value);">
       <input name="name" placeholder="Name" required>
       <input name="email" type="email" placeholder="Email" required>
       <input name="subject" placeholder="Subject">
       <textarea name="message" placeholder="Message" required></textarea>
       <button class="btn btn-primary" type="submit" style="border:none; cursor:pointer;">Send Message</button>
     </form>
-    <p class="editnote">This form opens the visitor's email client (no backend). Replace "your-email@example.com" with your real address.</p>
+    <p class="editnote">This form opens your email client with your message details pre-filled.</p>
   </div>
 </section>
 
@@ -275,6 +277,7 @@ try {
     { key: 'whatsapp',  icon: '💬', label: 'WhatsApp', value: 'Chat now', href: C.whatsapp ? 'https://wa.me/' + C.whatsapp : '' },
     { key: 'github',    icon: '🐙', label: 'GitHub',   value: 'View profile', href: C.github },
     { key: 'linkedin',  icon: '💼', label: 'LinkedIn', value: 'Connect',     href: C.linkedin },
+    { key: 'facebook',  icon: '👥', label: 'Facebook', value: 'Follow',      href: C.facebook },
     { key: 'twitter',   icon: '🐦', label: 'Twitter/X', value: 'Follow',     href: C.twitter },
     { key: 'instagram', icon: '📸', label: 'Instagram', value: 'Follow',     href: C.instagram },
     { key: 'email',     icon: '✉️', label: 'Email',     value: C.email,      href: C.email ? 'mailto:' + C.email : '' },
