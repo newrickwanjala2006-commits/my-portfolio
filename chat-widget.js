@@ -5,334 +5,251 @@ const API_URL = 'https://chatbot-backend-newt9.vercel.app/api/chat';
 // Inject widget HTML and CSS into the page
 const widgetHTML = `
   <style>
-    /* Responsive Chat Widget Styles */
-    #cw-btn {
+    /* Chat Widget Button Container */
+    #cw-container {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      min-width: 70px;
-      height: 70px;
+      z-index: 9999;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+
+    /* Main Chat Button */
+    #cw-btn {
+      position: relative;
+      width: 65px;
+      height: 65px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      background: linear-gradient(135deg, #3fd0c9 0%, #5b8def 100%);
+      border: none;
       color: white;
+      font-size: 28px;
+      cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      font-size: 28px;
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+      box-shadow: 0 4px 16px rgba(63, 208, 201, 0.4);
       transition: all 0.3s ease;
-      z-index: 999;
-      border: none;
-      font-family: inherit;
-      overflow: visible;
-      position: relative;
-      flex-direction: column;
-      gap: 4px;
-      padding: 0;
+      animation: float-btn 3s ease-in-out infinite, pulse-btn 2s ease-in-out infinite;
+      outline: none;
     }
 
     #cw-btn:hover {
-      transform: scale(1.15);
-      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.8);
+      transform: scale(1.12);
+      box-shadow: 0 6px 24px rgba(63, 208, 201, 0.8);
     }
 
     #cw-btn:active {
       transform: scale(0.95);
     }
 
-    /* Animated text display in button */
-    #cw-btn-emoji {
-      font-size: 28px;
-      line-height: 1;
-    }
-
-    #cw-btn-text {
-      font-size: 11px;
-      font-weight: 700;
-      white-space: nowrap;
-      line-height: 1.2;
-      text-align: center;
-      max-width: 95%;
-      letter-spacing: 0.5px;
-      animation: textPulse 2s ease-in-out infinite;
-      color: #fff;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    /* Pulse animation for attention */
-    @keyframes pulse-glow {
-      0%, 100% {
-        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
-      }
-      50% {
-        box-shadow: 0 4px 20px rgba(79, 70, 229, 0.9);
-      }
-    }
-
     /* Floating animation */
-    @keyframes float {
+    @keyframes float-btn {
       0%, 100% {
         transform: translateY(0px);
       }
       50% {
-        transform: translateY(-12px);
+        transform: translateY(-10px);
       }
     }
 
-    /* Text opacity pulse */
-    @keyframes textPulse {
+    /* Pulse glow animation */
+    @keyframes pulse-btn {
       0%, 100% {
+        box-shadow: 0 4px 16px rgba(63, 208, 201, 0.4);
+      }
+      50% {
+        box-shadow: 0 4px 24px rgba(63, 208, 201, 0.9);
+      }
+    }
+
+    /* Animated badge with rotating text */
+    #cw-badge {
+      position: absolute;
+      bottom: -45px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: linear-gradient(135deg, #3fd0c9 0%, #5b8def 100%);
+      color: white;
+      padding: 8px 14px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(63, 208, 201, 0.5);
+      opacity: 0;
+      animation: slide-up 0.4s ease forwards;
+      margin-top: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    @keyframes slide-up {
+      from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+      }
+    }
+
+    /* Pulsing dot indicator */
+    .cw-pulse-dot {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #ff6b6b;
+      border-radius: 50%;
+      top: -5px;
+      right: -5px;
+      animation: pulse-dot 1.5s ease-in-out infinite;
+      border: 2px solid white;
+    }
+
+    @keyframes pulse-dot {
+      0%, 100% {
+        transform: scale(1);
         opacity: 1;
       }
       50% {
+        transform: scale(1.3);
         opacity: 0.7;
       }
     }
 
-    /* Typewriter effect for rotating text */
-    @keyframes typewriter {
-      0% {
-        width: 0;
-      }
-      100% {
-        width: 100%;
-      }
-    }
-
-    @keyframes blink {
-      0%, 49% {
-        border-right-color: white;
-      }
-      50%, 100% {
-        border-right-color: transparent;
-      }
-    }
-
-    #cw-btn {
-      animation: pulse-glow 2s ease-in-out infinite, float 3s ease-in-out infinite;
-    }
-
-    /* Default size (Desktop) */
-    #cw-btn {
-      width: 75px;
-    }
-
-    #cw-btn-text {
-      font-size: 11px;
-    }
-
-    /* Tablet: Medium screens (768px to 1023px) */
-    @media (max-width: 1023px) {
-      #cw-btn {
-        bottom: 18px;
-        right: 18px;
-        width: 70px;
-        height: 70px;
-        font-size: 26px;
-      }
-
-      #cw-btn-text {
-        font-size: 10px;
-      }
-    }
-
-    /* Mobile: Small screens (below 768px) */
-    @media (max-width: 768px) {
-      #cw-btn {
-        bottom: 16px;
-        right: 16px;
-        width: 68px;
-        height: 68px;
-        font-size: 24px;
-      }
-
-      #cw-btn-emoji {
-        font-size: 24px;
-      }
-
-      #cw-btn-text {
-        font-size: 9px;
-        font-weight: 700;
-      }
-    }
-
-    /* Extra small screens (below 480px) */
-    @media (max-width: 480px) {
-      #cw-btn {
-        bottom: 12px;
-        right: 12px;
-        width: 65px;
-        height: 65px;
-        font-size: 22px;
-      }
-
-      #cw-btn-emoji {
-        font-size: 22px;
-      }
-
-      #cw-btn-text {
-        font-size: 8px;
-        font-weight: 700;
-        max-width: 90%;
-      }
-    }
-
+    /* Chat Window */
     #cw-box {
       position: fixed;
       bottom: 95px;
       right: 20px;
+      width: 420px;
+      height: 550px;
       background: white;
-      border-radius: 12px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-      flex-direction: column;
-      z-index: 999;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
       display: none;
-      transition: all 0.3s ease;
+      flex-direction: column;
+      z-index: 9998;
+      animation: slide-in 0.3s ease;
       overflow: hidden;
     }
 
-    /* Desktop: Default size (1024px and up) */
-    @media (min-width: 1024px) {
-      #cw-box {
-        width: 380px;
-        height: 500px;
+    @keyframes slide-in {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
       }
     }
 
-    /* Tablet: Medium screens (768px to 1023px) */
-    @media (min-width: 768px) and (max-width: 1023px) {
-      #cw-box {
-        width: 340px;
-        height: 460px;
-        bottom: 80px;
-        right: 15px;
-      }
-    }
-
-    /* Mobile: Small screens (below 768px) */
-    @media (max-width: 767px) {
-      #cw-box {
-        position: fixed;
-        width: calc(100% - 30px);
-        height: 70vh;
-        max-height: 500px;
-        bottom: 75px;
-        right: 15px;
-        left: 15px;
-        max-width: none;
-      }
-    }
-
-    /* Extra small screens (below 360px) */
-    @media (max-width: 359px) {
-      #cw-box {
-        width: calc(100% - 20px);
-        height: 65vh;
-        bottom: 65px;
-        right: 10px;
-        left: 10px;
-      }
-    }
-
+    /* Header */
     #cw-header {
-      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+      background: linear-gradient(135deg, #3fd0c9 0%, #5b8def 100%);
       color: white;
-      padding: 14px 16px;
-      font-weight: 600;
+      padding: 18px;
+      font-weight: 700;
+      font-size: 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-shrink: 0;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-    }
-
-    #cw-header span:first-child {
-      font-size: 16px;
     }
 
     #cw-close {
       cursor: pointer;
-      font-size: 24px;
+      font-size: 28px;
       line-height: 1;
       transition: transform 0.2s ease;
+      background: rgba(255, 255, 255, 0.2);
+      border: none;
+      color: white;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     #cw-close:hover {
       transform: rotate(90deg);
+      background: rgba(255, 255, 255, 0.3);
     }
 
+    /* Message Log */
     #cw-log {
       flex: 1;
       overflow-y: auto;
-      padding: 12px;
-      font-size: 14px;
+      padding: 16px;
       background: #fafafa;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 8px;
     }
 
     #cw-log::-webkit-scrollbar {
-      width: 6px;
+      width: 8px;
     }
 
     #cw-log::-webkit-scrollbar-track {
-      background: #f1f1f1;
+      background: #f0f0f0;
     }
 
     #cw-log::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 3px;
+      background: #3fd0c9;
+      border-radius: 4px;
     }
 
     #cw-log::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
+      background: #2db8b0;
     }
 
+    /* Input Area */
     #cw-input-wrapper {
       display: flex;
       border-top: 1px solid #eee;
       background: white;
       flex-shrink: 0;
       gap: 0;
+      padding: 12px;
     }
 
     #cw-input {
       flex: 1;
-      border: none;
+      border: 1px solid #ddd;
+      border-radius: 8px;
       padding: 12px;
       outline: none;
       font-size: 14px;
       font-family: inherit;
-      resize: none;
-      background: white;
-      transition: background 0.2s ease;
+      transition: border 0.2s ease;
     }
 
     #cw-input:focus {
-      background: #fafafa;
-    }
-
-    #cw-input::placeholder {
-      color: #999;
+      border-color: #3fd0c9;
+      box-shadow: 0 0 0 3px rgba(63, 208, 201, 0.1);
     }
 
     #cw-send {
       border: none;
-      background: #4f46e5;
+      background: #3fd0c9;
       color: white;
-      padding: 0 18px;
+      padding: 12px 16px;
+      margin-left: 8px;
       cursor: pointer;
       font-weight: 600;
       font-size: 14px;
+      border-radius: 8px;
       transition: all 0.2s ease;
-      white-space: nowrap;
       flex-shrink: 0;
     }
 
     #cw-send:hover {
-      background: #4338ca;
+      background: #2db8b0;
     }
 
     #cw-send:active {
@@ -344,9 +261,10 @@ const widgetHTML = `
       cursor: not-allowed;
     }
 
+    /* Messages */
     .cw-message-wrapper {
-      margin: 8px 0;
       display: flex;
+      margin: 8px 0;
       animation: fadeIn 0.3s ease;
     }
 
@@ -360,25 +278,25 @@ const widgetHTML = `
 
     .cw-bubble {
       display: inline-block;
-      padding: 8px 12px;
-      border-radius: 14px;
-      max-width: 80%;
+      padding: 10px 14px;
+      border-radius: 12px;
+      max-width: 75%;
       word-wrap: break-word;
-      line-height: 1.4;
-      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+      line-height: 1.5;
+      font-size: 14px;
       animation: slideIn 0.2s ease;
     }
 
     .cw-bubble.user {
-      background: #4f46e5;
+      background: #3fd0c9;
       color: white;
       border-bottom-right-radius: 4px;
     }
 
     .cw-bubble.bot {
-      background: #fff;
-      color: #111;
-      border: 1px solid #e2e8f0;
+      background: white;
+      color: #333;
+      border: 1px solid #ddd;
       border-bottom-left-radius: 4px;
     }
 
@@ -401,26 +319,111 @@ const widgetHTML = `
         opacity: 1;
       }
     }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      #cw-container {
+        bottom: 15px;
+        right: 15px;
+      }
+
+      #cw-btn {
+        width: 60px;
+        height: 60px;
+        font-size: 24px;
+      }
+
+      #cw-box {
+        width: calc(100% - 30px);
+        height: 70vh;
+        max-height: 500px;
+        bottom: 75px;
+        right: 15px;
+        left: 15px;
+        border-radius: 12px;
+      }
+
+      #cw-header {
+        padding: 14px 16px;
+        font-size: 15px;
+      }
+
+      #cw-log {
+        padding: 12px;
+      }
+
+      #cw-input-wrapper {
+        padding: 10px;
+      }
+
+      #cw-input {
+        padding: 10px;
+        font-size: 13px;
+      }
+
+      #cw-send {
+        padding: 10px 14px;
+        font-size: 13px;
+      }
+
+      .cw-bubble {
+        max-width: 85%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      #cw-container {
+        bottom: 12px;
+        right: 12px;
+      }
+
+      #cw-btn {
+        width: 56px;
+        height: 56px;
+        font-size: 22px;
+      }
+
+      #cw-box {
+        width: calc(100% - 24px);
+        bottom: 68px;
+        right: 12px;
+        left: 12px;
+      }
+
+      #cw-badge {
+        display: none;
+      }
+
+      .cw-pulse-dot {
+        width: 10px;
+        height: 10px;
+        top: -3px;
+        right: -3px;
+      }
+    }
   </style>
 
-  <button id="cw-btn" aria-label="Open chat">
-    <span id="cw-btn-emoji">💬</span>
-    <span id="cw-btn-text">Ask projects</span>
-  </button>
-  <div id="cw-box">
-    <div id="cw-header">
-      <span>Ask me anything</span>
-      <span id="cw-close" role="button" aria-label="Close chat">×</span>
-    </div>
-    <div id="cw-log" role="log" aria-live="polite"></div>
-    <div id="cw-input-wrapper">
-      <input
-        id="cw-input"
-        type="text"
-        placeholder="Type a message..."
-        aria-label="Chat message input"
-      />
-      <button id="cw-send" aria-label="Send message">Send</button>
+  <div id="cw-container">
+    <button id="cw-btn" aria-label="Open chat">
+      💬
+      <span class="cw-pulse-dot"></span>
+    </button>
+    <div id="cw-badge">Ask anything!</div>
+    <div id="cw-box">
+      <div id="cw-header">
+        <span>Chat Assistant</span>
+        <button id="cw-close" aria-label="Close chat">×</button>
+      </div>
+      <div id="cw-log" role="log" aria-live="polite"></div>
+      <div id="cw-input-wrapper">
+        <input
+          id="cw-input"
+          type="text"
+          placeholder="Ask about my projects..."
+          aria-label="Chat message input"
+        />
+        <button id="cw-send" aria-label="Send message">Send</button>
+      </div>
     </div>
   </div>
 `;
@@ -438,29 +441,29 @@ document.addEventListener('DOMContentLoaded', () => {
   const log = document.getElementById('cw-log');
   const input = document.getElementById('cw-input');
   const sendBtn = document.getElementById('cw-send');
-  const btnText = document.getElementById('cw-btn-text');
+  const badge = document.getElementById('cw-badge');
 
-  // Rotating text messages for animation
-  const rotatingTexts = [
+  // Rotating messages for badge
+  const badgeMessages = [
+    'Ask anything!',
     'Ask projects',
     'Ask skills',
-    'Ask about me',
     'Chat now! 🚀'
   ];
 
-  let textIndex = 0;
+  let badgeIndex = 0;
 
-  // Rotate text every 3 seconds
+  // Rotate badge text
   setInterval(() => {
-    textIndex = (textIndex + 1) % rotatingTexts.length;
-    btnText.textContent = rotatingTexts[textIndex];
-  }, 3000);
+    badgeIndex = (badgeIndex + 1) % badgeMessages.length;
+    badge.textContent = badgeMessages[badgeIndex];
+  }, 2500);
 
   // Message history for API context
   const history = [
     {
       role: 'system',
-      content: 'You are a friendly portfolio assistant. Answer questions about the portfolio owner using the facts you were given.'
+      content: 'You are a friendly portfolio assistant for Newtrick Wanjala. Answer questions about cybersecurity, projects, skills, background, and professional interests.'
     }
   ];
 
@@ -471,7 +474,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Show greeting on first open
     if (isHidden && log.children.length === 0) {
-      addMessage("Hi! Ask me anything about my background, skills, or projects.", 'bot');
+      addMessage("Hi! 👋 I'm Newtrick's assistant. Ask me anything about cybersecurity, my projects, or skills!", 'bot');
     }
 
     // Focus input when opened
@@ -533,7 +536,7 @@ document.addEventListener('DOMContentLoaded', () => {
       });
 
       const data = await res.json();
-      const reply = data.choices?.[0]?.message?.content || 'Sorry, something went wrong.';
+      const reply = data.choices?.[0]?.message?.content || 'Sorry, something went wrong. Please try again.';
 
       // Replace typing indicator with actual response
       thinkingMessage.remove();
@@ -542,7 +545,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } catch (err) {
       // Handle network errors
       thinkingMessage.remove();
-      addMessage('Network error. Please try again.', 'bot');
+      addMessage('Network error. Please check your connection and try again.', 'bot');
       console.error('Chat error:', err);
     } finally {
       // Re-enable send button and focus input
@@ -559,13 +562,6 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       sendMessage();
-    }
-  });
-
-  // Allow Shift+Enter for new lines if needed
-  input.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter' && e.shiftKey) {
-      // Allow default behavior for Shift+Enter
     }
   });
 });
