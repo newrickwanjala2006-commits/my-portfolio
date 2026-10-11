@@ -10,28 +10,31 @@ const widgetHTML = `
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 60px;
-      height: 60px;
+      min-width: 70px;
+      height: 70px;
       border-radius: 50%;
-      background: #4f46e5;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
       color: white;
       display: flex;
       align-items: center;
       justify-content: center;
       cursor: pointer;
-      font-size: 24px;
+      font-size: 28px;
       box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
       transition: all 0.3s ease;
       z-index: 999;
       border: none;
       font-family: inherit;
-      overflow: hidden;
+      overflow: visible;
       position: relative;
+      flex-direction: column;
+      gap: 4px;
+      padding: 0;
     }
 
     #cw-btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 16px rgba(79, 70, 229, 0.6);
+      transform: scale(1.15);
+      box-shadow: 0 8px 24px rgba(79, 70, 229, 0.8);
     }
 
     #cw-btn:active {
@@ -40,32 +43,21 @@ const widgetHTML = `
 
     /* Animated text display in button */
     #cw-btn-emoji {
-      position: absolute;
-      font-size: 24px;
-      transition: opacity 0.3s ease;
-      opacity: 1;
+      font-size: 28px;
+      line-height: 1;
     }
 
     #cw-btn-text {
-      position: absolute;
-      font-size: 12px;
-      font-weight: 600;
+      font-size: 11px;
+      font-weight: 700;
       white-space: nowrap;
-      transition: opacity 0.3s ease;
-      opacity: 0;
       line-height: 1.2;
       text-align: center;
-      padding: 0 8px;
-      max-width: 90%;
-    }
-
-    /* Show text animation on hover and on load */
-    #cw-btn:hover #cw-btn-emoji {
-      opacity: 0;
-    }
-
-    #cw-btn:hover #cw-btn-text {
-      opacity: 1;
+      max-width: 95%;
+      letter-spacing: 0.5px;
+      animation: textPulse 2s ease-in-out infinite;
+      color: #fff;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
     /* Pulse animation for attention */
@@ -74,7 +66,7 @@ const widgetHTML = `
         box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
       }
       50% {
-        box-shadow: 0 4px 20px rgba(79, 70, 229, 0.8);
+        box-shadow: 0 4px 20px rgba(79, 70, 229, 0.9);
       }
     }
 
@@ -84,7 +76,36 @@ const widgetHTML = `
         transform: translateY(0px);
       }
       50% {
-        transform: translateY(-8px);
+        transform: translateY(-12px);
+      }
+    }
+
+    /* Text opacity pulse */
+    @keyframes textPulse {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.7;
+      }
+    }
+
+    /* Typewriter effect for rotating text */
+    @keyframes typewriter {
+      0% {
+        width: 0;
+      }
+      100% {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink {
+      0%, 49% {
+        border-right-color: white;
+      }
+      50%, 100% {
+        border-right-color: transparent;
       }
     }
 
@@ -92,9 +113,74 @@ const widgetHTML = `
       animation: pulse-glow 2s ease-in-out infinite, float 3s ease-in-out infinite;
     }
 
+    /* Default size (Desktop) */
+    #cw-btn {
+      width: 75px;
+    }
+
+    #cw-btn-text {
+      font-size: 11px;
+    }
+
+    /* Tablet: Medium screens (768px to 1023px) */
+    @media (max-width: 1023px) {
+      #cw-btn {
+        bottom: 18px;
+        right: 18px;
+        width: 70px;
+        height: 70px;
+        font-size: 26px;
+      }
+
+      #cw-btn-text {
+        font-size: 10px;
+      }
+    }
+
+    /* Mobile: Small screens (below 768px) */
+    @media (max-width: 768px) {
+      #cw-btn {
+        bottom: 16px;
+        right: 16px;
+        width: 68px;
+        height: 68px;
+        font-size: 24px;
+      }
+
+      #cw-btn-emoji {
+        font-size: 24px;
+      }
+
+      #cw-btn-text {
+        font-size: 9px;
+        font-weight: 700;
+      }
+    }
+
+    /* Extra small screens (below 480px) */
+    @media (max-width: 480px) {
+      #cw-btn {
+        bottom: 12px;
+        right: 12px;
+        width: 65px;
+        height: 65px;
+        font-size: 22px;
+      }
+
+      #cw-btn-emoji {
+        font-size: 22px;
+      }
+
+      #cw-btn-text {
+        font-size: 8px;
+        font-weight: 700;
+        max-width: 90%;
+      }
+    }
+
     #cw-box {
       position: fixed;
-      bottom: 90px;
+      bottom: 95px;
       right: 20px;
       background: white;
       border-radius: 12px;
@@ -126,24 +212,12 @@ const widgetHTML = `
 
     /* Mobile: Small screens (below 768px) */
     @media (max-width: 767px) {
-      #cw-btn {
-        bottom: 15px;
-        right: 15px;
-        width: 56px;
-        height: 56px;
-        font-size: 20px;
-      }
-
-      #cw-btn-text {
-        font-size: 10px;
-      }
-
       #cw-box {
         position: fixed;
         width: calc(100% - 30px);
         height: 70vh;
         max-height: 500px;
-        bottom: 70px;
+        bottom: 75px;
         right: 15px;
         left: 15px;
         max-width: none;
@@ -152,11 +226,6 @@ const widgetHTML = `
 
     /* Extra small screens (below 360px) */
     @media (max-width: 359px) {
-      #cw-btn {
-        width: 52px;
-        height: 52px;
-      }
-
       #cw-box {
         width: calc(100% - 20px);
         height: 65vh;
@@ -167,7 +236,7 @@ const widgetHTML = `
     }
 
     #cw-header {
-      background: #4f46e5;
+      background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
       color: white;
       padding: 14px 16px;
       font-weight: 600;
@@ -336,7 +405,7 @@ const widgetHTML = `
 
   <button id="cw-btn" aria-label="Open chat">
     <span id="cw-btn-emoji">💬</span>
-    <span id="cw-btn-text">Ask anything about my projects</span>
+    <span id="cw-btn-text">Ask projects</span>
   </button>
   <div id="cw-box">
     <div id="cw-header">
@@ -369,6 +438,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const log = document.getElementById('cw-log');
   const input = document.getElementById('cw-input');
   const sendBtn = document.getElementById('cw-send');
+  const btnText = document.getElementById('cw-btn-text');
+
+  // Rotating text messages for animation
+  const rotatingTexts = [
+    'Ask projects',
+    'Ask skills',
+    'Ask about me',
+    'Chat now! 🚀'
+  ];
+
+  let textIndex = 0;
+
+  // Rotate text every 3 seconds
+  setInterval(() => {
+    textIndex = (textIndex + 1) % rotatingTexts.length;
+    btnText.textContent = rotatingTexts[textIndex];
+  }, 3000);
 
   // Message history for API context
   const history = [
