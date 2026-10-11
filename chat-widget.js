@@ -23,7 +23,7 @@ const widgetHTML = `
       background: linear-gradient(135deg, #3fd0c9 0%, #5b8def 100%);
       border: none;
       color: white;
-      font-size: 28px;
+      font-size: 0;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -63,34 +63,34 @@ const widgetHTML = `
       }
     }
 
-    /* Animated badge with rotating text */
+    /* Animated badge with rotating text - MOVED ABOVE BUTTON */
     #cw-badge {
       position: absolute;
-      bottom: -45px;
+      bottom: 75px;
       left: 50%;
       transform: translateX(-50%);
       background: linear-gradient(135deg, #3fd0c9 0%, #5b8def 100%);
       color: white;
-      padding: 8px 14px;
-      border-radius: 20px;
-      font-size: 12px;
+      padding: 10px 16px;
+      border-radius: 24px;
+      font-size: 13px;
       font-weight: 700;
       white-space: nowrap;
       box-shadow: 0 4px 12px rgba(63, 208, 201, 0.5);
-      opacity: 0;
-      animation: slide-up 0.4s ease forwards;
-      margin-top: 8px;
+      opacity: 1;
+      animation: float-badge 3s ease-in-out infinite;
       letter-spacing: 0.5px;
+      pointer-events: none;
     }
 
-    @keyframes slide-up {
-      from {
-        opacity: 0;
-        transform: translateX(-50%) translateY(10px);
-      }
-      to {
+    @keyframes float-badge {
+      0%, 100% {
+        transform: translateX(-50%) translateY(0px);
         opacity: 1;
-        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        transform: translateX(-50%) translateY(-8px);
+        opacity: 0.9;
       }
     }
 
@@ -330,7 +330,12 @@ const widgetHTML = `
       #cw-btn {
         width: 60px;
         height: 60px;
-        font-size: 24px;
+      }
+
+      #cw-badge {
+        bottom: 70px;
+        font-size: 12px;
+        padding: 8px 14px;
       }
 
       #cw-box {
@@ -380,7 +385,12 @@ const widgetHTML = `
       #cw-btn {
         width: 56px;
         height: 56px;
-        font-size: 22px;
+      }
+
+      #cw-badge {
+        bottom: 65px;
+        font-size: 11px;
+        padding: 7px 12px;
       }
 
       #cw-box {
@@ -388,10 +398,6 @@ const widgetHTML = `
         bottom: 68px;
         right: 12px;
         left: 12px;
-      }
-
-      #cw-badge {
-        display: none;
       }
 
       .cw-pulse-dot {
@@ -404,11 +410,10 @@ const widgetHTML = `
   </style>
 
   <div id="cw-container">
+    <div id="cw-badge">Ask projects</div>
     <button id="cw-btn" aria-label="Open chat">
-      💬
       <span class="cw-pulse-dot"></span>
     </button>
-    <div id="cw-badge">Ask anything!</div>
     <div id="cw-box">
       <div id="cw-header">
         <span>Chat Assistant</span>
@@ -445,15 +450,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Rotating messages for badge
   const badgeMessages = [
-    'Ask anything!',
     'Ask projects',
     'Ask skills',
+    'Ask about me',
     'Chat now! 🚀'
   ];
 
   let badgeIndex = 0;
 
-  // Rotate badge text
+  // Rotate badge text every 2.5 seconds
   setInterval(() => {
     badgeIndex = (badgeIndex + 1) % badgeMessages.length;
     badge.textContent = badgeMessages[badgeIndex];
