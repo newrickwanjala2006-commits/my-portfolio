@@ -25,6 +25,8 @@ const widgetHTML = `
       z-index: 999;
       border: none;
       font-family: inherit;
+      overflow: hidden;
+      position: relative;
     }
 
     #cw-btn:hover {
@@ -34,6 +36,60 @@ const widgetHTML = `
 
     #cw-btn:active {
       transform: scale(0.95);
+    }
+
+    /* Animated text display in button */
+    #cw-btn-emoji {
+      position: absolute;
+      font-size: 24px;
+      transition: opacity 0.3s ease;
+      opacity: 1;
+    }
+
+    #cw-btn-text {
+      position: absolute;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+      transition: opacity 0.3s ease;
+      opacity: 0;
+      line-height: 1.2;
+      text-align: center;
+      padding: 0 8px;
+      max-width: 90%;
+    }
+
+    /* Show text animation on hover and on load */
+    #cw-btn:hover #cw-btn-emoji {
+      opacity: 0;
+    }
+
+    #cw-btn:hover #cw-btn-text {
+      opacity: 1;
+    }
+
+    /* Pulse animation for attention */
+    @keyframes pulse-glow {
+      0%, 100% {
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.4);
+      }
+      50% {
+        box-shadow: 0 4px 20px rgba(79, 70, 229, 0.8);
+      }
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-8px);
+      }
+    }
+
+    #cw-btn {
+      animation: pulse-glow 2s ease-in-out infinite, float 3s ease-in-out infinite;
     }
 
     #cw-box {
@@ -76,6 +132,10 @@ const widgetHTML = `
         width: 56px;
         height: 56px;
         font-size: 20px;
+      }
+
+      #cw-btn-text {
+        font-size: 10px;
       }
 
       #cw-box {
@@ -274,7 +334,10 @@ const widgetHTML = `
     }
   </style>
 
-  <button id="cw-btn" aria-label="Open chat">💬</button>
+  <button id="cw-btn" aria-label="Open chat">
+    <span id="cw-btn-emoji">💬</span>
+    <span id="cw-btn-text">Ask anything about my projects</span>
+  </button>
   <div id="cw-box">
     <div id="cw-header">
       <span>Ask me anything</span>
