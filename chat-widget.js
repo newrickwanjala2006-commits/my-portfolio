@@ -12,6 +12,36 @@ const widgetHTML = `
       right: 20px;
       z-index: 9999;
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Animated badge with rotating text - NOW CLEARLY VISIBLE */
+    #cw-badge {
+      background: linear-gradient(135deg, #3fd0c9 0%, #5b8def 100%);
+      color: white;
+      padding: 10px 16px;
+      border-radius: 24px;
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      box-shadow: 0 4px 12px rgba(63, 208, 201, 0.5);
+      letter-spacing: 0.5px;
+      animation: float-badge 3s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    @keyframes float-badge {
+      0%, 100% {
+        transform: translateY(0px);
+        opacity: 1;
+      }
+      50% {
+        transform: translateY(-8px);
+        opacity: 0.9;
+      }
     }
 
     /* Main Chat Button */
@@ -63,46 +93,15 @@ const widgetHTML = `
       }
     }
 
-    /* Animated badge with rotating text - MOVED ABOVE BUTTON */
-    #cw-badge {
-      position: absolute;
-      bottom: 75px;
-      left: 50%;
-      transform: translateX(-50%);
-      background: linear-gradient(135deg, #3fd0c9 0%, #5b8def 100%);
-      color: white;
-      padding: 10px 16px;
-      border-radius: 24px;
-      font-size: 13px;
-      font-weight: 700;
-      white-space: nowrap;
-      box-shadow: 0 4px 12px rgba(63, 208, 201, 0.5);
-      opacity: 1;
-      animation: float-badge 3s ease-in-out infinite;
-      letter-spacing: 0.5px;
-      pointer-events: none;
-    }
-
-    @keyframes float-badge {
-      0%, 100% {
-        transform: translateX(-50%) translateY(0px);
-        opacity: 1;
-      }
-      50% {
-        transform: translateX(-50%) translateY(-8px);
-        opacity: 0.9;
-      }
-    }
-
     /* Pulsing dot indicator */
     .cw-pulse-dot {
       position: absolute;
-      width: 12px;
-      height: 12px;
+      width: 14px;
+      height: 14px;
       background: #ff6b6b;
       border-radius: 50%;
-      top: -5px;
-      right: -5px;
+      top: -7px;
+      right: -7px;
       animation: pulse-dot 1.5s ease-in-out infinite;
       border: 2px solid white;
     }
@@ -121,7 +120,7 @@ const widgetHTML = `
     /* Chat Window */
     #cw-box {
       position: fixed;
-      bottom: 95px;
+      bottom: 110px;
       right: 20px;
       width: 420px;
       height: 550px;
@@ -333,7 +332,6 @@ const widgetHTML = `
       }
 
       #cw-badge {
-        bottom: 70px;
         font-size: 12px;
         padding: 8px 14px;
       }
@@ -342,7 +340,7 @@ const widgetHTML = `
         width: calc(100% - 30px);
         height: 70vh;
         max-height: 500px;
-        bottom: 75px;
+        bottom: 85px;
         right: 15px;
         left: 15px;
         border-radius: 12px;
@@ -388,14 +386,13 @@ const widgetHTML = `
       }
 
       #cw-badge {
-        bottom: 65px;
         font-size: 11px;
         padding: 7px 12px;
       }
 
       #cw-box {
         width: calc(100% - 24px);
-        bottom: 68px;
+        bottom: 80px;
         right: 12px;
         left: 12px;
       }
@@ -403,8 +400,8 @@ const widgetHTML = `
       .cw-pulse-dot {
         width: 10px;
         height: 10px;
-        top: -3px;
-        right: -3px;
+        top: -5px;
+        right: -5px;
       }
     }
   </style>
