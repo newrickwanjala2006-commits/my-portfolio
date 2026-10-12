@@ -53,7 +53,7 @@ const widgetHTML = `
       background: linear-gradient(135deg, #3fd0c9 0%, #5b8def 100%);
       border: none;
       color: white;
-      font-size: 0;
+      font-size: 28px;
       cursor: pointer;
       display: flex;
       align-items: center;
@@ -409,6 +409,7 @@ const widgetHTML = `
   <div id="cw-container">
     <div id="cw-badge">Ask projects</div>
     <button id="cw-btn" aria-label="Open chat">
+      💬
       <span class="cw-pulse-dot"></span>
     </button>
     <div id="cw-box">
