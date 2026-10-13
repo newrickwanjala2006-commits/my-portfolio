@@ -71,7 +71,7 @@ footer{padding:36px 0; text-align:center; color:var(--muted); font-size:13px;}
 .editnote{font-size:12px; color:var(--muted); background:var(--bg2); border:1px dashed var(--border); padding:10px 14px; border-radius:8px; margin-top:10px;}
 @media (max-width:640px){.navlinks{display:none;}}
 .connect-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-top:24px;}
-.connect-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; text-decoration:none; color:var(--text); display:flex; align-items:center; gap:12px; transition:border 0.2s;}
+.connect-card{background:var(--card); border:1px solid var(--border); border-radius:12px; padding:18px; text-decoration:none; color:var(--text); display:flex; align-items:center; gap:12px; transition: border-color .2s ease;}
 .connect-card:hover{border-color:var(--accent);}
 .connect-icon{font-size:22px;}
 .connect-label{font-size:13px; color:var(--muted);}
@@ -88,7 +88,7 @@ const CONFIG = {
   linkedin:  "https://linkedin.com/in/newtrickwanjala",
   twitter:   "",
   instagram: "",
-  facebook:  "https://facebook.com/newt.rick",
+  facebook:  "https://web.facebook.com/profile.php?id=61578090316715",
   email:     "wanjalanewtrick@gmail.com",
   projects:  "https://github.com/newrickwanjala2006?tab=repositories",
   chatbot_api: "https://chatbot-backend-newt9.vercel.app/api/chat"
@@ -109,7 +109,7 @@ const CONFIG = {
     <div class="badge">Open to Cybersecurity Internship &amp; Junior Security Opportunities</div>
     <h1>Securing Systems. Understanding Threats. Building Safer Technology.</h1>
     <p class="sub">Cybersecurity Student · Ethical Hacking · Network Security · Linux</p>
-    <p class="intro">I'm a Computer Science student specializing in cybersecurity, passionate about understanding how systems are attacked, how vulnerabilities can be identified, and how organizations can be protected.</p>
+    <p class="intro">I'm a Computer Science student specializing in cybersecurity, passionate about understanding how systems are attacked, how vulnerabilities can be identified, and how organizations secure their digital environments.</p>
     <div class="btnrow">
       <a class="btn btn-primary" id="projects-ext-link" href="#" target="_blank" rel="noopener">View My Projects</a>
       <a class="btn btn-outline" href="#" id="cvlink">Download CV</a>
@@ -242,7 +242,7 @@ const CONFIG = {
   <div class="wrap">
     <h2>Contact</h2>
     <p style="color:var(--muted)">Open to internships, attachments, and junior cybersecurity roles.</p>
-    <form onsubmit="event.preventDefault(); window.location.href='mailto:wanjalanewtrick@gmail.com?subject=' + encodeURIComponent(this.subject.value) + '&body=' + encodeURIComponent('From: ' + this.name.value + ' (' + this.email.value + ')\n\n' + this.message.value);">
+    <form onsubmit="event.preventDefault(); window.location.href='mailto:wanjalanewtrick@gmail.com?subject=' + encodeURIComponent(this.subject.value) + '&body=' + encodeURIComponent('From: ' + this.name.value + '\nEmail: ' + this.email.value + '\n\n' + this.message.value);">
       <input name="name" placeholder="Name" required>
       <input name="email" type="email" placeholder="Email" required>
       <input name="subject" placeholder="Subject">
